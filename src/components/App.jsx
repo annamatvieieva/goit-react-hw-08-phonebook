@@ -1,5 +1,9 @@
 // import PropTypes from 'prop-types';
 import { Component } from "react";
+// import { nanoid } from 'nanoid'
+import { Statistics } from './Statistics/Statistics';
+import {FeedbackOptions} from './FeedbackOptions/FeedbackOptions'
+import { Section } from './Section/Section';
 
 export class App extends Component {
   state = {
@@ -7,20 +11,17 @@ export class App extends Component {
     neutral: 0,
     bad: 0
   }
-  
-  leaveFeedback = (e) => {
-    const { name } = e.target;
-    console.log(name);
-    this.setState(prevState => (
-      { [name]: prevState[name] + 1 }));
-  }
 
+  leaveFeedback = (feedback) => {
+    console.log(feedback);
+    this.setState(prevState => (
+      { [feedback]: prevState[feedback] + 1 }));
+  }
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     const total = good + neutral + bad;
     return total;
   }
-
   countPositiveFeedbackPercentage = () => {
     const {good} = this.state;
     const total = this.countTotalFeedback();
@@ -28,25 +29,17 @@ export class App extends Component {
     return goodPercentage;
 
   }
+
+  // feedbackButtonId = nanoid();
     
   render() {
+    const { good, neutral, bad } = this.state;
+    const options = ['good', 'neutral', 'bad'];
     return (
-      <>
-        <h1>Please leave feedback</h1>
-        <div>
-          <button type='button' name='good' onClick={this.leaveFeedback}>Good</button>
-          <button type='button' name='neutral' onClick={this.leaveFeedback}>Neutral</button>
-          <button type='button' name='bad' onClick={this.leaveFeedback}>Bad</button>
-        </div>
-        <div>
-          <h2>Statistics</h2>
-          <p>Good: {this.state.good}</p>
-          <p>Neutral: {this.state.neutral}</p>
-          <p>Bad: {this.state.bad}</p>
-          <p>Total: {this.countTotalFeedback()} </p>
-          <p>Positive feedback: {this.countPositiveFeedbackPercentage()} </p>
-        </div>
-      </>
+      <Section title='Please leave feedback'>
+        <FeedbackOptions options={options} onLeaveFeedback={this.leaveFeedback} />
+        <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+      </Section>
     );
   };
 }
