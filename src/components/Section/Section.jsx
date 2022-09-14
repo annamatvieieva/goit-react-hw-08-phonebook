@@ -1,9 +1,16 @@
+import PropTypes from 'prop-types';
+import { Box } from 'components/Box';
 
-export const Section = ({ title, children}) => {
+export const Section = ({ title, children }) => {
   return (
-    <section>
-			<h1>{title}</h1>
-			{children}
-    </section>
+    <Box as="section" p={4}>
+      <h1>{title}</h1>
+      {children}
+    </Box>
   );
+};
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };

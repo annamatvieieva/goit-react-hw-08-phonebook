@@ -1,21 +1,25 @@
-// import PropTypes from 'prop-types';
 import { Component } from "react";
-// import { nanoid } from 'nanoid'
-import { Statistics } from './Statistics/Statistics';
-import {FeedbackOptions} from './FeedbackOptions/FeedbackOptions'
-import { Section } from './Section/Section';
+import { GlobalStyle } from './GlobalStyle';
+import { FeedbackOptions } from "./FeedbackOptions";
+import { Notification } from "./Notification";
+import { Section } from "./Section";
+import { Statistics } from "./Statistics";
 
 export class App extends Component {
   state = {
     good: 0,
     neutral: 0,
-    bad: 0
-  }
+    bad: 0,
+    oneFeedback: false,
+  } 
 
   leaveFeedback = (feedback) => {
-    console.log(feedback);
     this.setState(prevState => (
-      { [feedback]: prevState[feedback] + 1 }));
+      {
+        [feedback]: prevState[feedback] + 1,
+        oneFeedback: true
+      }
+    ));
   }
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
@@ -29,17 +33,17 @@ export class App extends Component {
     return goodPercentage;
 
   }
-
-  // feedbackButtonId = nanoid();
-    
+  
   render() {
-    const { good, neutral, bad } = this.state;
+    const { good, neutral, bad, oneFeedback } = this.state;
     const options = ['good', 'neutral', 'bad'];
-    return (
+    return (<>
+      <GlobalStyle/>
       <Section title='Please leave feedback'>
         <FeedbackOptions options={options} onLeaveFeedback={this.leaveFeedback} />
-        <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+        {oneFeedback ? <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} /> : <Notification message='There is no feedback'/>}
       </Section>
+      </>
     );
   };
 }
