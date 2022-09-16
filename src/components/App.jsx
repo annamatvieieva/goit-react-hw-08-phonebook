@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { GlobalStyle } from './GlobalStyle';
 import { nanoid } from 'nanoid';
-import { resetWarningCache } from 'prop-types';
 import { ContactList } from './ContactList/ContactList';
 
 const INITIAL_STATE = {

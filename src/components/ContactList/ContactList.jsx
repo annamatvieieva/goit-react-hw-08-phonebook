@@ -8,5 +8,4 @@ export const ContactList = ({ contacts }) => {
 		</ul>
 		</>
 	)
-
 }
