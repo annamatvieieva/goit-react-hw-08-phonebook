@@ -18,9 +18,16 @@ export class App extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
-  
   addContact = contact => {
-    this.setState(prevState => ({ contacts: [...prevState.contacts, contact]}))
+    const { name } = contact;
+    const { contacts } = this.state;
+    const normalizeName = name.toLocaleLowerCase();
+    const filter = ({ name }) => name.toLowerCase().includes(normalizeName);
+    if (contacts.find(filter)) {
+      return alert(`${name} is already in contacts`);
+    } else {
+      this.setState(prevState => ({ contacts: [...prevState.contacts, contact] }));
+    }
   }
   
     render() {
