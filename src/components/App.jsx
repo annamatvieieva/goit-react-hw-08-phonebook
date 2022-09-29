@@ -1,22 +1,34 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { GlobalStyle } from './GlobalStyle';
 import { Box } from './Box';
 import { ContactList } from './ContactList';
 import { Filter } from './Filter';
 import { ContactForm } from './ContactForm';
 
-const INITIAL_STATE = {
-  contacts: [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ],
-  filter: '',
-};
+export class App extends PureComponent {
+  state = {
+    contacts: [],
+    filter: '',
+  };
 
-export class App extends Component {
-  state = { ...INITIAL_STATE };
+  componentDidMount() {
+    console.log('mount');
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (parsedContacts) {
+      console.log('беремо з LS дані');
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('update');
+    console.log(this.state.contacts);
+    console.log(prevState.contacts);
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('записуємо в LS');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   handleChange = e => {
     const { name, value } = e.target;
