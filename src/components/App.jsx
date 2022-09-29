@@ -24,7 +24,7 @@ export class App extends PureComponent {
     console.log('update');
     console.log(this.state.contacts);
     console.log(prevState.contacts);
-    if (this.state.contacts !== prevState.contacts) {
+    if (this.state.contacts.length !== prevState.contacts.length) {
       console.log('записуємо в LS');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
