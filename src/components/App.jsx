@@ -12,20 +12,14 @@ export class App extends PureComponent {
   };
 
   componentDidMount() {
-    console.log('mount');
     const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
     if (parsedContacts) {
-      console.log('беремо з LS дані');
       this.setState({ contacts: parsedContacts });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('update');
-    console.log(this.state.contacts);
-    console.log(prevState.contacts);
     if (this.state.contacts.length !== prevState.contacts.length) {
-      console.log('записуємо в LS');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
