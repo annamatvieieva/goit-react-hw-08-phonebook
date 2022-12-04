@@ -47,6 +47,8 @@ export class App extends PureComponent {
     }));
   };
 
+
+
   render() {
     const { contacts, filter } = this.state;
     const normalizeFilter = filter.toLocaleLowerCase();
