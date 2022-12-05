@@ -1,48 +1,34 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
-import { nanoid } from 'nanoid';
 import { FormBox } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
-export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-  reset = e => {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
-    const contactId = nanoid();
-    const contact = {
-      id: contactId,
-      name,
-      number,
-    };
-    this.props.onSubmit(contact);
-    this.reset();
+    const form = e.currentTarget;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    const normalizeName = name.toLocaleLowerCase();
+    const filter = ({ name }) => name.toLowerCase().includes(normalizeName);
+    if (contacts.find(filter)) {
+      return alert(`${name} is already in contacts`);
+    } else {
+      dispatch(addContact(name, number));
+      form.reset();
+    }
   };
 
-  render() {
-    const { name, number } = this.state;
     return (
-      <FormBox onSubmit={this.handleSubmit}>
+      <FormBox onSubmit={handleSubmit}>
         <label>
           Name
           <input
             type="text"
             name="name"
-            value={name}
-            onChange={this.handleChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -53,8 +39,6 @@ export class ContactForm extends Component {
           <input
             type="tel"
             name="number"
-            value={number}
-            onChange={this.handleChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
@@ -63,9 +47,5 @@ export class ContactForm extends Component {
         <button type="submit">Add contact</button>
       </FormBox>
     );
-  }
 }
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
