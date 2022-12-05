@@ -11,7 +11,6 @@ export const ContactList = () => {
   const filterContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(normalizeFilter)
   );
-  // const handleDelete = (id) => dispatch(deleteContact(id));
 
   return (
     <ContactListBox>
@@ -22,10 +21,7 @@ export const ContactList = () => {
             <p>
               {name}: {number}
             </p>
-            <button
-              type="button"
-              onClick={() =>  dispatch(deleteContact(id))}
-            >
+            <button type="button" onClick={() => dispatch(deleteContact(id))}>
               Delete
             </button>
           </Contact>
@@ -34,4 +30,3 @@ export const ContactList = () => {
     </ContactListBox>
   );
 };
-

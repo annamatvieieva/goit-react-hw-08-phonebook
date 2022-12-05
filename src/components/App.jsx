@@ -16,11 +16,9 @@ export const App = () => {
         <Box as="h2" mb={4}>
           Contacts
         </Box>
-         <Filter/>
-         <ContactList/> 
+        <Filter />
+        <ContactList />
       </Box>
     </>
   );
-}
-  
-
+};
