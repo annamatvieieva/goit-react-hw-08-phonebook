@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+
 export const ContactListBox = styled.ul`
   padding-left: ${p => p.theme.space[4]}px;
+  padding-top: ${p => p.theme.space[4]}px;
   list-style-type: inherit;
 `;
 

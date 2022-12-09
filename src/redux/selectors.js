@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 
 export const selectContacts = state => state.contacts.items;
@@ -8,9 +7,7 @@ export const selectFilter = state => state.filter.filter;
 
 export const selectFilterContacts = createSelector(
   [selectContacts, selectFilter],
-  () => {
-    const contacts = useSelector(selectContacts);
-    const filter = useSelector(selectFilter);
+  (contacts, filter) => {
     const normalizeFilter = filter.toLocaleLowerCase();
     const filterContacts = contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizeFilter)

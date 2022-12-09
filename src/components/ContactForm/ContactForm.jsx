@@ -14,7 +14,7 @@ export const ContactForm = () => {
     const phone = form.elements.number.value;
     const contact = { name, phone };
     const normalizeName = name.toLocaleLowerCase();
-    const filter = ({ name }) => name.toLowerCase().includes(normalizeName);
+    const filter = ({ name }) => name.toLowerCase() === normalizeName;
     if (contacts.find(filter)) {
       return alert(`${name} is already in contacts`);
     } else {

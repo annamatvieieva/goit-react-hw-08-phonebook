@@ -23,7 +23,7 @@ export const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(
-          contact => contact.id !== action.payload
+          contact => contact.id !== action.payload.id
         );
       })
       .addMatcher(isAnyOf(...getAction('pending')), (state, action) => {
