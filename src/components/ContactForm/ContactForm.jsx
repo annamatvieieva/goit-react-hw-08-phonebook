@@ -1,7 +1,7 @@
-import { FormBox } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
+import { FormBox } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();

@@ -1,19 +1,18 @@
-import { GlobalStyle } from './GlobalStyle';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
+import { GlobalStyle } from './GlobalStyle';
 import { Box } from './Box';
 import { ContactList } from './ContactList';
 import { Filter } from './Filter';
 import { ContactForm } from './ContactForm';
-import { fetchContacts } from 'redux/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectIsLoading } from 'redux/selectors';
-
 
 export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  const error =  useSelector(selectError);
-  
+  const error = useSelector(selectError);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -30,7 +29,9 @@ export const App = () => {
           Contacts
         </Box>
         <Filter />
-        {isLoading && !error && (<b>Please, wait. Contacts are loading or updating...</b>)}
+        {isLoading && !error && (
+          <b>Please, wait. Contacts are loading or updating...</b>
+        )}
         <ContactList />
       </Box>
     </>

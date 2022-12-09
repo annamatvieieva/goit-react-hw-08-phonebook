@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
-import { Contact, ContactListBox } from './ContactList.styled';
+import { useSelector, useDispatch} from 'react-redux';
 import { selectFilterContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
-import { useDispatch } from 'react-redux';
+import { Contact, ContactListBox } from './ContactList.styled';
+
 
 export const ContactList = () => {
   const dispatch = useDispatch();
