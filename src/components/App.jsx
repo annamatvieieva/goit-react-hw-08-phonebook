@@ -30,7 +30,7 @@ export const App = () => {
           Contacts
         </Box>
         <Filter />
-        {isLoading && !error && (<b>"Please, wait. Contacts are loading or updating..."</b>)}
+        {isLoading && !error && (<b>Please, wait. Contacts are loading or updating...</b>)}
         <ContactList />
       </Box>
     </>
