@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 import { FormBox } from './ContactForm.styled';
 
 export const ContactForm = () => {
@@ -11,8 +11,8 @@ export const ContactForm = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
-    const contact = { name, phone };
+    const number = form.elements.number.value;
+    const contact = { name, number };
     const normalizeName = name.toLocaleLowerCase();
     const filter = ({ name }) => name.toLowerCase() === normalizeName;
     if (contacts.find(filter)) {

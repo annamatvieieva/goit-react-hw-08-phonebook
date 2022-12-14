@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/operations';
-import { selectError, selectIsLoading } from 'redux/selectors';
-import { GlobalStyle } from './GlobalStyle';
-import { Box } from './Box';
-import { ContactList } from './ContactList';
-import { Filter } from './Filter';
-import { ContactForm } from './ContactForm';
+import { fetchContacts } from 'redux/contacts/operations';
+import { selectError, selectIsLoading } from 'redux/contacts/selectors';
+import { GlobalStyle } from 'components/GlobalStyle';
+import { Box } from 'components/Box';
+import { ContactList } from 'components/ContactList';
+import { Filter } from 'components/Filter';
+import { ContactForm } from 'components/ContactForm';
 
-export const App = () => {
+const Contacts = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -37,3 +37,5 @@ export const App = () => {
     </>
   );
 };
+
+export default Contacts;
