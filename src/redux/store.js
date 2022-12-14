@@ -5,7 +5,7 @@ import { userReducer } from './auth/slice';
 
 export const store = configureStore({
   reducer: {
-    user: userReducer,
+    auth: userReducer,
     contacts: contactsReducer,
     filter: filterReducer,
   },

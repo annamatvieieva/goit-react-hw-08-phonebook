@@ -1,8 +1,22 @@
+import { useDispatch } from "react-redux";
+import { logIn} from "redux/auth/operations";
 import { FormBox } from "./LoginForm.styled";
 
 export const LoginForm = () => {
+const dispatch = useDispatch();
+  
+	const handleSubmit = e => {
+		e.preventDefault();
+		const form = e.currentTarget;
+		const email = form.elements.email.value;
+		const password = form.elements.password.value;
+		const user = { email, password };
+		dispatch(logIn(user));
+		form.reset();
+	};
+
 	return (
-		<FormBox>
+		<FormBox onSubmit={handleSubmit}>
 			<label>
 				Email
 				<input

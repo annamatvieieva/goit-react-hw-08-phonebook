@@ -7,9 +7,9 @@ const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -23,3 +23,22 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const logIn = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+  try {
+    const response = await axios.post('/users/login', user);
+    setAuthHeader(response.data.token);
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
+
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/logout');
+    clearAuthHeader();
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
