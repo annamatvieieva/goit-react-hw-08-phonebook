@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { register } from './operations';
 
 const userInitialState = {
@@ -8,8 +8,8 @@ const userInitialState = {
   isRefreshing: false,
 };
 
-const extraActions = [register];
-const getAction = type => extraActions.map(action => action[type]);
+// const extraActions = [register];
+// const getAction = type => extraActions.map(action => action[type]);
 
 export const userSlice = createSlice({
   name: 'auth',
