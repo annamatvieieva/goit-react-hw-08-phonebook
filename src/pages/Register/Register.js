@@ -1,6 +1,5 @@
 import { RegisterForm } from 'components/RegisterForm';
 import { RegisterPageStyle } from './Register.styled';
-import { Box } from 'components/Box';
 
 const Register = () => {
   return (
