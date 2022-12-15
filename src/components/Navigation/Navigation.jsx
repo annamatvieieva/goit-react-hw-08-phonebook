@@ -4,12 +4,13 @@ import { NavigationElement, NavigationList } from './Navigation.styled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  
+
   return (
-        <NavigationList>
+    <NavigationList>
       <NavigationElement to="/">Home</NavigationElement>
-      {isLoggedIn && (<NavigationElement to="/contacts">Contacts</NavigationElement>)}
-        </NavigationList>
+      {isLoggedIn && (
+        <NavigationElement to="/contacts">Contacts</NavigationElement>
+      )}
+    </NavigationList>
   );
 };
-

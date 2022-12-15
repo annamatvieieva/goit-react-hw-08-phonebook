@@ -1,10 +1,10 @@
-import { NavigationElement, NavigationList } from "./Menu.styled";
+import { NavigationElement, NavigationList } from './Menu.styled';
 
 export const Menu = () => {
-	return (
-        <NavigationList>
+  return (
+    <NavigationList>
       <NavigationElement to="/register">Register</NavigationElement>
-      <NavigationElement to="/login">LogIn</NavigationElement>
-        </NavigationList>
+      <NavigationElement to="/login">Log In</NavigationElement>
+    </NavigationList>
   );
-}
+};

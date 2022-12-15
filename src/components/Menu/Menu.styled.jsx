@@ -11,7 +11,7 @@ export const NavigationElement = styled(NavLink)`
   font-weight: ${p => p.theme.fontWeights.bold};
 
   &.active {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.yellow};
   }
 
   :hover {

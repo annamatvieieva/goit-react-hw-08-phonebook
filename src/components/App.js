@@ -6,11 +6,12 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { ShareLayout } from './ShareLayot';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import { GlobalStyle } from './GlobalStyle';
 
-const HomePage = lazy(() => import('../pages/Home'));
-const ContactPage = lazy(() => import('../pages/Contacts'));
-const RegisterPage = lazy(() => import('../pages/Register'));
-const LoginPage = lazy(() => import('../pages/Login'));
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const ContactPage = lazy(() => import('../pages/Contacts/Contacts'));
+const RegisterPage = lazy(() => import('../pages/Register/Register'));
+const LoginPage = lazy(() => import('../pages/Login/Login'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export const App = () => {
     <b> Please, wait...</b>
   ) : (
     <>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<ShareLayout />}>
           <Route index element={<HomePage />} />
