@@ -1,10 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const notify = message => {
+    toast.error(message);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -15,7 +20,7 @@ export const ContactForm = () => {
     const normalizeName = name.toLocaleLowerCase();
     const filter = ({ name }) => name.toLowerCase() === normalizeName;
     if (contacts.find(filter)) {
-      return alert(`${name} is already in contacts`);
+      return notify(`${name} is already in contacts`);
     } else {
       dispatch(addContact(contact));
       form.reset();
@@ -23,6 +28,7 @@ export const ContactForm = () => {
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <label>
         Name
@@ -45,6 +51,8 @@ export const ContactForm = () => {
         />
       </label>
       <button type="submit">Add contact</button>
-    </form>
+      </form>
+      <ToastContainer/>
+    </>
   );
 };

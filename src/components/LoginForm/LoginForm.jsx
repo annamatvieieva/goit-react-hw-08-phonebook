@@ -21,10 +21,6 @@ export const LoginForm = () => {
     form.classList.remove('error');
   };
 
-  if (error) {
-    alert(error);
-  }
-
   return (
     <form onSubmit={handleSubmit} className={error ? 'error' : ''}>
         <label>
