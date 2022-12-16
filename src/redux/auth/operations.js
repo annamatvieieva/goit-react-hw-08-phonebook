@@ -19,7 +19,9 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(
+        'Please, check your data. Maybe the user with such email is already registered.'
+      );
     }
   }
 );
@@ -30,7 +32,9 @@ export const logIn = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     setAuthHeader(response.data.token);
     return response.data;
   } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+    return thunkAPI.rejectWithValue(
+      'You entered an incorrect data. Please,  check your data and then try again.'
+    );
   }
 });
 

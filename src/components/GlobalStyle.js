@@ -56,16 +56,21 @@ export const GlobalStyle = createGlobalStyle`
   }
   form {
     width: 500px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-	justify-content: center;
-	align-items: center;
-  padding: ${p => p.theme.space[2]}px;
-  background-color: ${p => p.theme.colors.primary};
-  border: ${p => p.theme.borders.normal} ${p => p.theme.colors.primary};
-  border-radius: ${p => p.theme.radii.md};
-  font-weight: ${p => p.theme.fontWeights.bold};
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: ${p => p.theme.space[2]}px;
+    background-color: ${p => p.theme.colors.primary};
+    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.primary};
+    border-radius: ${p => p.theme.radii.md};
+    font-weight: ${p => p.theme.fontWeights.bold};
+
+    &.error {
+      border: ${p => p.theme.borders.bold} ${p => p.theme.colors.red};
+      border-radius: ${p => p.theme.radii.md};
+    }
   }
   label {
     display: flex;

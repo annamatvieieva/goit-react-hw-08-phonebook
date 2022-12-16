@@ -4,8 +4,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { refresh } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import { ShareLayout } from './ShareLayot';
-import { PrivateRoute } from './PrivateRoute';
-import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from '../routes/PrivateRoute';
+import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { GlobalStyle } from './GlobalStyle';
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
